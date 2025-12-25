@@ -1,18 +1,13 @@
-# --- OS / IDE ---
+# OS / IDE
 .vs/
 .vscode/
-*.user
-*.suo
+.DS_Store
 
-# --- .NET ---
+# .NET
 **/bin/
 **/obj/
 
-# --- Node / React ---
+# Node
 **/node_modules/
 **/dist/
 **/.env
-**/.env.local
-
-# --- Logs ---
-*.log
