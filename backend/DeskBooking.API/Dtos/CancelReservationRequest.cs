@@ -5,9 +5,6 @@ public class CancelReservationRequest
     public int ReservationId { get; set; }
     public int UserId { get; set; }
 
-    // true = cancel whole reservation, false = cancel a specific day
-    public bool WholeRange { get; set; }
-
-    public DateTime? Day { get; set; }
+    // optional
     public int? ReservationAccessCode { get; set; }
 }

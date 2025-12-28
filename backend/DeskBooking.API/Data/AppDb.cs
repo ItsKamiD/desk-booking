@@ -11,6 +11,7 @@ public class AppDb : DbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<Reservation> Reservations => Set<Reservation>();
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Reservation>()
@@ -25,11 +26,12 @@ public class AppDb : DbContext
             .HasForeignKey(r => r.UserId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        // Important: prevent duplicates (same desk reserved twice on same day)
+        // Prevent double booking in DB (desk + day must be unique)
         modelBuilder.Entity<Reservation>()
             .HasIndex(r => new { r.DeskId, r.ReservationDate })
             .IsUnique();
 
         base.OnModelCreating(modelBuilder);
     }
+
 }

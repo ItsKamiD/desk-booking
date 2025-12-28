@@ -1,5 +1,7 @@
 using DeskBooking.API.Data;
 using Microsoft.EntityFrameworkCore;
+using DeskBooking.API.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

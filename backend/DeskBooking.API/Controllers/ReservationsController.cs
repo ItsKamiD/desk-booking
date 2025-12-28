@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DeskBooking.API.Controllers;
 
 [ApiController]
-[Route("api/reservations")]
+[Route("api/[controller]")]
 public class ReservationsController : ControllerBase
 {
     private readonly ReservationService _service;
@@ -37,8 +37,6 @@ public class ReservationsController : ControllerBase
         var (ok, message) = await _service.CancelAsync(
             request.ReservationId,
             request.UserId,
-            request.WholeRange,
-            request.Day,
             request.ReservationAccessCode);
 
         if (!ok)
@@ -52,7 +50,8 @@ public class ReservationsController : ControllerBase
     public async Task<IActionResult> GetProfile([FromRoute] int userId)
     {
         var profile = await _service.GetProfileAsync(userId);
-        if (profile == null) return NotFound(new { message = "User not found." });
+        if (profile == null)
+            return NotFound(new { message = "User not found." });
 
         return Ok(profile);
     }
