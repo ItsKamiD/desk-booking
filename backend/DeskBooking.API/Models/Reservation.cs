@@ -12,9 +12,9 @@ public class Reservation
     public int UserId { get; set; }
     public User ReservedBy { get; set; } = null!;
 
-    // Reservation Details
-    public int ReservationAccessCode { get; set; }    //Dont know if ill use this yet 
-    public DateTime ReservationStartTime { get; set; }
-    public DateTime ReservationEndTime { get; set; }
+    // Single day reservation
+    public DateTime ReservationDate { get; set; }
 
+    // Optional access code (same for all days in a request)
+    public int ReservationAccessCode { get; set; }
 }

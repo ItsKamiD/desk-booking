@@ -1,5 +1,6 @@
 using DeskBooking.API.Models;
 using Microsoft.EntityFrameworkCore;
+
 namespace DeskBooking.API.Data;
 
 public class AppDb : DbContext
@@ -12,19 +13,22 @@ public class AppDb : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Reservation -> Desk relationship (many reservations can exist for one desk over time)
         modelBuilder.Entity<Reservation>()
             .HasOne(r => r.ReservedDesk)
             .WithMany()
             .HasForeignKey(r => r.DeskId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        // Reservation -> User relationship
         modelBuilder.Entity<Reservation>()
             .HasOne(r => r.ReservedBy)
             .WithMany()
             .HasForeignKey(r => r.UserId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        // Important: prevent duplicates (same desk reserved twice on same day)
+        modelBuilder.Entity<Reservation>()
+            .HasIndex(r => new { r.DeskId, r.ReservationDate })
+            .IsUnique();
 
         base.OnModelCreating(modelBuilder);
     }
