@@ -2,11 +2,11 @@ import { useState } from "react";
 import ReserveModal from "./ReserveModal";
 import CancelModal from "./CancelModal";
 
-function statusColor(status) {
-  if (status === "Open") return "#d1fae5";        // green-ish
-  if (status === "Reserved") return "#fee2e2";    // red-ish
-  if (status === "Maintenance") return "#e5e7eb"; // gray-ish
-  return "#ffffff";
+function statusStyles(status) {
+  if (status === "Open") return "bg-emerald-50 border-emerald-200 text-emerald-800";
+  if (status === "Reserved") return "bg-rose-50 border-rose-200 text-rose-800";
+  if (status === "Maintenance") return "bg-slate-100 border-slate-200 text-slate-700";
+  return "bg-white border-slate-200 text-slate-700";
 }
 
 export default function DeskCard({ desk, userId, onChanged }) {
@@ -16,37 +16,49 @@ export default function DeskCard({ desk, userId, onChanged }) {
   const status = desk.status;
   const reservedBy = desk.reservedBy;
   const reservation = desk.reservation;
-
   const isMine = reservedBy?.userId === userId;
 
   let hoverText = "";
   if (status === "Maintenance") hoverText = desk.maintenanceMessage || "Under maintenance";
-  if (status === "Reserved" && reservedBy)
-    hoverText = `Reserved by ${reservedBy.firstName} ${reservedBy.lastName}`;
+  if (status === "Reserved" && reservedBy) hoverText = `Reserved by ${reservedBy.firstName} ${reservedBy.lastName}`;
 
   return (
     <div
       title={hoverText}
-      style={{
-        padding: 12,
-        borderRadius: 10,
-        border: "1px solid #ddd",
-        background: statusColor(status),
-        display: "flex",
-        flexDirection: "column",
-        gap: 8,
-      }}
+      className={`rounded-xl border p-4 shadow-sm ${statusStyles(status)} flex flex-col`}
     >
-      <div style={{ fontWeight: 700 }}>Desk #{desk.deskNumber}</div>
-      <div>Status: {status}</div>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="text-lg font-semibold">Desk #{desk.deskNumber}</div>
+          <div className="mt-1 text-sm">
+            <span className="font-medium">Status:</span> {status}
+          </div>
+        </div>
 
-      {status === "Open" && (
-        <button onClick={() => setShowReserve(true)}>Reserve</button>
-      )}
+        <span className="rounded-full bg-white/70 px-2 py-1 text-xs font-semibold border border-white/50">
+          {status}
+        </span>
+      </div>
 
-      {status === "Reserved" && isMine && reservation?.id && (
-        <button onClick={() => setShowCancel(true)}>Cancel</button>
-      )}
+      <div className="mt-4">
+        {status === "Open" && (
+          <button
+            onClick={() => setShowReserve(true)}
+            className="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Reserve
+          </button>
+        )}
+
+        {status === "Reserved" && isMine && reservation?.id && (
+          <button
+            onClick={() => setShowCancel(true)}
+            className="w-full rounded-md bg-rose-600 px-3 py-2 text-sm font-semibold text-black hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500"
+          >
+            Cancel
+          </button>
+        )}
+      </div>
 
       {showReserve && (
         <ReserveModal

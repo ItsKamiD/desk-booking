@@ -1,26 +1,24 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import Header from "./Components/Header";
 import DesksPage from "./pages/DesksPage";
 import ProfilePage from "./pages/ProfilePage";
-import UserPicker from "./components/UserPicker";
 
 export default function App() {
   const [userId, setUserId] = useState(1);
 
   return (
     <BrowserRouter>
-      <div style={{ padding: 16, display: "flex", gap: 12, alignItems: "center" }}>
-        <Link to="/">Desks</Link>
-        <Link to="/profile">Profile</Link>
-        <div style={{ marginLeft: "auto" }}>
-          <UserPicker userId={userId} setUserId={setUserId} />
-        </div>
-      </div>
+      <div className="min-h-screen bg-slate-50">
+        <Header userId={userId} setUserId={setUserId} />
 
-      <Routes>
-        <Route path="/" element={<DesksPage userId={userId} />} />
-        <Route path="/profile" element={<ProfilePage userId={userId} />} />
-      </Routes>
+        <main className="mx-auto max-w-5xl px-6 py-6">
+          <Routes>
+            <Route path="/" element={<DesksPage userId={userId} />} />
+            <Route path="/profile" element={<ProfilePage userId={userId} />} />
+          </Routes>
+        </main>
+      </div>
     </BrowserRouter>
   );
 }

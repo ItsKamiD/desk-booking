@@ -10,7 +10,7 @@ public static class DbSeeder
 
         // Users
         db.Users.AddRange(
-            new User { Id = 1, FirstName = "Kami", LastName = "Demo" },
+            new User { Id = 1, FirstName = "Kamil", LastName = "Demo" },
             new User { Id = 2, FirstName = "Alex", LastName = "Smith" }
         );
 
