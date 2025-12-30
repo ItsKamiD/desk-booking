@@ -9,8 +9,19 @@ export default function CancelModal({ reservationId, userId, onClose, onDone }) 
   const cancel = async () => {
     setBusy(true);
     setError("");
+
+    // empty => null, otherwise must be a number
+    const trimmed = code.trim();
+    const accessCode =
+      trimmed === "" ? null : Number.isFinite(Number(trimmed)) ? Number(trimmed) : NaN;
+
+    if (accessCode !== null && Number.isNaN(accessCode)) {
+      setBusy(false);
+      setError("Access code must be a number.");
+      return;
+    }
+
     try {
-      const accessCode = code.trim() === "" ? null : Number(code);
       await api.cancelReservation(reservationId, userId, accessCode);
       onDone();
     } catch (e) {
@@ -26,12 +37,17 @@ export default function CancelModal({ reservationId, userId, onClose, onDone }) 
         <h3>Cancel reservation #{reservationId}</h3>
 
         <div style={{ fontSize: 13 }}>
-          If you want, enter your access code (optional unless your backend enforces it).
+          Enter your access code to cancel this reservation.
         </div>
 
         <label>
           Access code:
-          <input value={code} onChange={(e) => setCode(e.target.value)} />
+          <input
+            inputMode="numeric"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            placeholder="e.g. 123456"
+          />
         </label>
 
         {error && <div style={{ color: "crimson" }}>{error}</div>}
@@ -48,11 +64,20 @@ export default function CancelModal({ reservationId, userId, onClose, onDone }) 
 }
 
 const overlay = {
-  position: "fixed", inset: 0, background: "rgba(0,0,0,0.3)",
-  display: "flex", alignItems: "center", justifyContent: "center"
+  position: "fixed",
+  inset: 0,
+  background: "rgba(0,0,0,0.3)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 const modal = {
-  background: "white", padding: 16, borderRadius: 10, width: 360,
-  display: "flex", flexDirection: "column", gap: 10
+  background: "white",
+  padding: 16,
+  borderRadius: 10,
+  width: 360,
+  display: "flex",
+  flexDirection: "column",
+  gap: 10,
 };

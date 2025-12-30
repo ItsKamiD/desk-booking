@@ -67,5 +67,5 @@ npm install
 npm run dev
 ```
 
-Backend will run on: http://localhost:5000
+Frontend will run on: http://localhost:5000
 (or the port shown in terminal)

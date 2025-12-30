@@ -14,7 +14,6 @@ public class DesksController : ControllerBase
         _service = service;
     }
 
-    // GET api/desks/range?startDate=2025-12-28&endDate=2025-12-30
     [HttpGet("range")]
     public async Task<IActionResult> GetForRange([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
     {

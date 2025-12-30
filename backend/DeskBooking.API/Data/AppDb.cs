@@ -26,7 +26,7 @@ public class AppDb : DbContext
             .HasForeignKey(r => r.UserId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        // Prevent double booking in DB (desk + day must be unique)
+        // Prevents double booking in DB (desk + day must be unique)
         modelBuilder.Entity<Reservation>()
             .HasIndex(r => new { r.DeskId, r.ReservationDate })
             .IsUnique();

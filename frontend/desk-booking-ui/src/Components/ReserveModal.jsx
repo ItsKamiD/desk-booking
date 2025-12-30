@@ -12,7 +12,6 @@ export default function ReserveModal({ deskId, userId, day, onClose, onDone }) {
     setError("");
     try {
       const res = await api.reserveDay(deskId, userId, day);
-      // Your backend returns { message, reservation }
       const code = res?.reservation?.reservationAccessCode;
       setAccessCode(code ?? null);
     } catch (e) {
