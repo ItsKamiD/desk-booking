@@ -9,7 +9,7 @@ function statusStyles(status) {
   return "bg-white border-slate-200 text-slate-700";
 }
 
-export default function DeskCard({ desk, userId, onChanged }) {
+export default function DeskCard({ desk, userId, onChanged, day }) {
   const [showReserve, setShowReserve] = useState(false);
   const [showCancel, setShowCancel] = useState(false);
 
@@ -64,6 +64,7 @@ export default function DeskCard({ desk, userId, onChanged }) {
         <ReserveModal
           deskId={desk.id}
           userId={userId}
+          day={day}
           onClose={() => setShowReserve(false)}
           onDone={() => { setShowReserve(false); onChanged(); }}
         />
@@ -73,6 +74,7 @@ export default function DeskCard({ desk, userId, onChanged }) {
         <CancelModal
           reservationId={reservation.id}
           userId={userId}
+          day={day}
           onClose={() => setShowCancel(false)}
           onDone={() => { setShowCancel(false); onChanged(); }}
         />

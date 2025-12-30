@@ -12,7 +12,7 @@ export default function Header({ userId, setUserId }) {
         </Link>
 
         {/* Navigation */}
-        <nav className="flex gap-6 text-gray-600 font-medium">
+        <nav className="flex gap-6 px-39 py-2 text-gray-600 font-medium">
           <Link to="/" className="hover:text-indigo-600 transition">Desks</Link>
           <Link to="/profile" className="hover:text-indigo-600 transition">Profile</Link>
         </nav>

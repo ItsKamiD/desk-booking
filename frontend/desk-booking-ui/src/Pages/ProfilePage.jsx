@@ -54,7 +54,6 @@ export default function ProfilePage({ userId }) {
         <h1 className="text-2xl font-semibold text-slate-900">Profile</h1>
         <div className="mt-2 text-slate-700">
           <span className="font-semibold">{data.firstName} {data.lastName}</span>{" "}
-          <span className="text-slate-500">(id={data.id})</span>
         </div>
       </div>
 

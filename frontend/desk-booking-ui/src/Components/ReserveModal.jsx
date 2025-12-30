@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { api } from "../Api/client";
 
-export default function ReserveModal({ deskId, userId, onClose, onDone }) {
-  const [day, setDay] = useState(new Date().toISOString().slice(0, 10));
+export default function ReserveModal({ deskId, userId, day, onClose, onDone }) {
+  const [selectedDay, setSelectedDay] = useState(day);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [accessCode, setAccessCode] = useState(null);

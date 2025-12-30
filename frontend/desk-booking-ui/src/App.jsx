@@ -9,16 +9,17 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-slate-50">
-        <Header userId={userId} setUserId={setUserId} />
+      <Header userId={userId} setUserId={setUserId} />
 
-        <main className="mx-auto max-w-5xl px-6 py-6">
+      {/* MAIN LAYOUT WRAPPER */}
+      <main className="min-h-screen bg-slate-50">
+        <div className="mx-auto w-full max-w-6xl px-4 py-8">
           <Routes>
             <Route path="/" element={<DesksPage userId={userId} />} />
             <Route path="/profile" element={<ProfilePage userId={userId} />} />
           </Routes>
-        </main>
-      </div>
+        </div>
+      </main>
     </BrowserRouter>
   );
 }
