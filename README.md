@@ -4,8 +4,6 @@ A simple desk booking web application that allows users to view desk availabilit
 
 This project was built to focus on **clean logic**, **simple UI**, and **clear separation between frontend and backend**.
 
----
-
 ## ✨ Features
 
 ### 👤 User Simulation
@@ -32,8 +30,6 @@ This project was built to focus on **clean logic**, **simple UI**, and **clear s
   - Current reservations
   - Past reservations
 
----
-
 ## 🛠 Tech Stack
 
 ### Backend
@@ -47,8 +43,6 @@ This project was built to focus on **clean logic**, **simple UI**, and **clear s
 - **Vite**
 - **Tailwind CSS**
 - **React Router**
-
----
 
 ## 📁 Project Structure
 
@@ -71,22 +65,24 @@ desk-booking/
 │
 └── README.md
 
-
----
-
 ## ▶️ How to Run the Project
 
 ### Backend
 ```bash
 cd backend/DeskBooking.API
 dotnet run
+```
+
 Backend will run on: http://localhost:5000
 (or the port shown in terminal)
+
 
 ### Frontend
 ```bash
 cd frontend/desk-booking-ui
 npm install
 npm run dev
+```
+
 Backend will run on: http://localhost:5000
 (or the port shown in terminal)
