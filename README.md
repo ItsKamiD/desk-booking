@@ -46,24 +46,7 @@ This project was built to focus on **clean logic**, **simple UI**, and **clear s
 
 ## 📁 Project Structure
 
-desk-booking/
-├── backend/
-│ └── DeskBooking.API
-│ ├── Controllers
-│ ├── Services
-│ ├── Models
-│ ├── Dtos
-│ └── Data
-│
-├── frontend/
-│ └── desk-booking-ui
-│  ├──src
-│  │ ├── Components
-│  │ ├── Pages
-│  │ └── Api
-│  └── public
-│
-└── README.md
+![alt text](image.png)
 
 ## ▶️ How to Run the Project
 
